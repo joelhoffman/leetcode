@@ -6,7 +6,6 @@ struct NumberContainers {
     right: HashMap<i32, BTreeSet<i32>>
 }
 
-
 impl NumberContainers {
 
     fn new() -> Self {
@@ -14,24 +13,13 @@ impl NumberContainers {
     }
     
     fn change(&mut self, index: i32, number: i32) {
-        let prev = self.left.insert(index, number);
-        if let Some(i) = prev {
-            let mut rev = self.right.get_mut(&i).unwrap();
-            rev.remove(&index);
+        if let Some(i) = self.left.insert(index, number) {
+            self.right.get_mut(&i).unwrap().remove(&index);
         }
 
-        let mut maybe_rev = self.right.get_mut(&number);
-
-        match maybe_rev {
-            Some(rev) => {
-                rev.insert(index);
-            },
-            _ => {
-                let mut rev = BTreeSet::new();
-                rev.insert(index);
-                self.right.insert(number, rev);
-            }
-        };
+        self.right.entry(number)
+            .or_default()
+            .insert(index);
     }
     
     fn find(&self, number: i32) -> i32 {
