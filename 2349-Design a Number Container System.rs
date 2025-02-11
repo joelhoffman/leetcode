@@ -7,10 +7,6 @@ struct NumberContainers {
 }
 
 
-/** 
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl NumberContainers {
 
     fn new() -> Self {
@@ -43,10 +39,3 @@ impl NumberContainers {
         return set.map_or(-1, |set| set.first().map_or(-1, |i| *i) );
     }
 }
-
-/**
- * Your NumberContainers object will be instantiated and called as such:
- * let obj = NumberContainers::new();
- * obj.change(index, number);
- * let ret_2: i32 = obj.find(number);
- */

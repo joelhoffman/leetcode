@@ -3,10 +3,6 @@ struct MedianFinder {
 }
 
 
-/** 
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl MedianFinder {
 
     fn new() -> Self {
@@ -31,10 +27,3 @@ impl MedianFinder {
         return ((self.vec[left]+self.vec[right]) as f64)/2.0f64;
     }
 }
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * let obj = MedianFinder::new();
- * obj.add_num(num);
- * let ret_2: f64 = obj.find_median();
- */
